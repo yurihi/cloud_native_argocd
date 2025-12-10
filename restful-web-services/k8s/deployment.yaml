@@ -4,14 +4,8 @@ metadata:
   name: restful-web-services
   labels:
     app: restful-web-services
-    version: v1
 spec:
-  replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+  replicas: 1  # 로컬에서는 1개만
   selector:
     matchLabels:
       app: restful-web-services
@@ -19,47 +13,20 @@ spec:
     metadata:
       labels:
         app: restful-web-services
-        version: v1
     spec:
       containers:
       - name: restful-web-services
-        # TODO: Replace with your actual image repository and tag
-        image: 521730717515.dkr.ecr.ap-northeast-2.amazonaws.com/cloud_native:latest
-        imagePullPolicy: Always
+        image: restful-web-services:latest  # 로컬 이미지
+        imagePullPolicy: Never  # 로컬 이미지 사용
         ports:
-        - name: http
-          containerPort: 8080
-          protocol: TCP
+        - containerPort: 8888
         env:
-        - name: JAVA_OPTS
-          value: "-Xmx512m -Xms256m"
         - name: SPRING_PROFILES_ACTIVE
-          value: "prod"
+          value: "local"
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "250m"
+            memory: "256Mi"
+            cpu: "100m"
           limits:
-            memory: "1Gi"
+            memory: "512Mi"
             cpu: "500m"
-        livenessProbe:
-          httpGet:
-            path: /actuator/health/liveness
-            port: 8080
-          initialDelaySeconds: 60
-          periodSeconds: 10
-          timeoutSeconds: 3
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /actuator/health/readiness
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 5
-          timeoutSeconds: 3
-          failureThreshold: 3
-        lifecycle:
-          preStop:
-            exec:
-              command: ["sh", "-c", "sleep 10"]
-      terminationGracePeriodSeconds: 30

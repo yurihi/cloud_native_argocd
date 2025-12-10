@@ -2,14 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: restful-web-services
-  labels:
-    app: restful-web-services
 spec:
-  type: ClusterIP
+  type: NodePort  # 로컬 접속용
   ports:
   - port: 80
-    targetPort: 8080
-    protocol: TCP
-    name: http
+    targetPort: 8888
+    nodePort: 30080  # localhost:30080으로 접속
   selector:
     app: restful-web-services
