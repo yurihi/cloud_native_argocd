@@ -136,7 +136,7 @@ curl http://localhost:8080/actuator/health
 ```bash
 # EKS 클러스터 생성 (약 15-20분 소요)
 eksctl create cluster \
-    --name my-cluster \
+    --name api-cluster \
     --region ap-northeast-2 \
     --nodegroup-name standard-workers \
     --node-type t3.medium \

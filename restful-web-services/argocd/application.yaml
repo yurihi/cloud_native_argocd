@@ -10,7 +10,7 @@ spec:
   
   source:
     # TODO: Replace with your Git repository URL
-    repoURL: https://github.com/YOUR_USERNAME/YOUR_REPO.git
+    repoURL: https://github.com/yurihi/cloud_native_argocd.git
     targetRevision: main
     path: k8s
   

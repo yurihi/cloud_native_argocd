@@ -24,7 +24,7 @@ spec:
       containers:
       - name: restful-web-services
         # TODO: Replace with your actual image repository and tag
-        image: <YOUR_ECR_REPO>/restful-web-services:latest
+        image: 521730717515.dkr.ecr.ap-northeast-2.amazonaws.com/cloud_native:latest
         imagePullPolicy: Always
         ports:
         - name: http
