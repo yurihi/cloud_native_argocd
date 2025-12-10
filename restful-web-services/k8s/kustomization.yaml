@@ -19,5 +19,6 @@ namespace: default
 # Images to customize
 images:
   - name: restful-web-services
-    newName: <AWS_ACCOUNT_ID>.dkr.ecr.ap-northeast-2.amazonaws.com/restful-web-services
+    newName: restful-web-services
+    # newName: <AWS_ACCOUNT_ID>.dkr.ecr.ap-northeast-2.amazonaws.com/restful-web-services
     newTag: latest
